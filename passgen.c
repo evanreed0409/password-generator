@@ -1,22 +1,18 @@
 #include "passgen.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "time.h"
-#include "string.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
 
-int getLength()
+void getLength(int * length)
 {
-  int length;
-
   printf("String length: ");
-  scanf("%d", &length);
-
-  return(length);
+  scanf("%d", &*length);
 }
 
 void generateString(int length, char string[])
 {
-  const char * characters[72] = ['q', 'w', 'e', 'r', 't', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')']
+  const char charBank[73] = "qwertyuiopasdfghjklzxcvbnmQWERTYUIIOPASDFGHJKLZXCVBNM1234567890!@#$%^&*()";
   int charNum;
 
   srand(time(NULL));
@@ -25,7 +21,7 @@ void generateString(int length, char string[])
   {
     charNum = rand() % 72;
 
-    string[i] = characters[character];
+    string[i] = charBank[charNum];
   }
 
   return;
@@ -33,7 +29,7 @@ void generateString(int length, char string[])
 
 void printString(char string[])
 {
-  printf("Generated String: %s", string);
+  printf("Generated String: %s\n", string);
 
   return;
 }
